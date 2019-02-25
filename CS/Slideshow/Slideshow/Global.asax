@@ -1,0 +1,1 @@
+<%@ Application Codebehind="Global.asax.cs" Inherits="Slideshow.Global_asax" Language="C#" %>

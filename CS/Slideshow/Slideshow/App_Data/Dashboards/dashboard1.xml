@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="dashboard1" />
+  <DataSources>
+    <SqlDataSource Name="Invoices" ComponentName="sqlDataSource1">
+      <Connection Name="nwindConnection" FromAppConfig="true" />
+      <Query Type="SelectQuery" Name="Invoices">
+        <Tables>
+          <Table Name="Invoices" />
+        </Tables>
+        <Columns>
+          <AllColumns Table="Invoices" />
+        </Columns>
+      </Query>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <TabContainer ComponentName="tabContainerDashboardItem1" Name="Tab Container 1">
+      <Pages>
+        <Page ComponentName="pageDashboardItem1" Name="Page 1" />
+        <Page ComponentName="pageDashboardItem2" Name="Page 2" />
+        <Page ComponentName="pageDashboardItem3" Name="Page 3" />
+        <Page ComponentName="pageDashboardItem4" Name="Page 4" />
+        <Page ComponentName="pageDashboardItem5" Name="Page 5" />
+      </Pages>
+    </TabContainer>
+    <Grid ComponentName="gridDashboardItem1" Name="Grid 1" ParentContainer="pageDashboardItem1" DataSource="sqlDataSource1" DataMember="Invoices">
+      <DataItems>
+        <Dimension DataMember="Country" DefaultId="DataItem0" />
+        <Measure DataMember="ExtendedPrice" DefaultId="DataItem1" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn>
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+    <Pie ComponentName="pieDashboardItem1" Name="Pies 1" ParentContainer="pageDashboardItem3" DataSource="sqlDataSource1" DataMember="Invoices">
+      <DataItems>
+        <Measure DataMember="ExtendedPrice" DefaultId="DataItem0" />
+        <Dimension DataMember="Country" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" ParentContainer="pageDashboardItem5" DataSource="sqlDataSource1" DataMember="Invoices">
+      <DataItems>
+        <Measure DataMember="ExtendedPrice" DefaultId="DataItem0" />
+        <Dimension DataMember="Region" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutTabContainer DashboardItem="tabContainerDashboardItem1">
+        <LayoutTabPage DashboardItem="pageDashboardItem1">
+          <LayoutItem DashboardItem="gridDashboardItem1" />
+        </LayoutTabPage>
+        <LayoutTabPage DashboardItem="pageDashboardItem2" />
+        <LayoutTabPage DashboardItem="pageDashboardItem3">
+          <LayoutItem DashboardItem="pieDashboardItem1" />
+        </LayoutTabPage>
+        <LayoutTabPage DashboardItem="pageDashboardItem4" />
+        <LayoutTabPage DashboardItem="pageDashboardItem5">
+          <LayoutItem DashboardItem="chartDashboardItem1" />
+        </LayoutTabPage>
+      </LayoutTabContainer>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>
